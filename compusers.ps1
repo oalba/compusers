@@ -1,38 +1,5 @@
-﻿Import-module PSWorkflow
+﻿Import-Module PSWorkflow
 Import-Module activedirectory
-
-$user = read-host “What is the Username of the user?”
-$UserCheck = get-aduser $user
-if ($user -eq ""){
-	Write-Host "Username cannot be blank, please re-enter username!!!!!"
-} elseif ($UserCheck -eq $null){
-	Write-Host $user
-	Write-Host "Invalid username, please verify this is the logon id for the account"
-} else {
-    $op = Read-Host "Where do you want to search?
-    A) DC=magni,DC=local
-    B) CN=Computers,DC=magni,DC=local
-    C) OU=MAGNI Servers,DC=magni,DC=local
-    D) OU=MAGNI Computers,DC=magni,DC=local
-    E) OU=Ulster Folk and Transport Museum,OU=MAGNI Computers,DC=magni,DC=local
-    F) OU=Ulster Museum,OU=MAGNI Computers,DC=magni,DC=local
-    G) OU=Ulster American Folk Park,OU=MAGNI Computers,DC=magni,DC=local
-    
-    Answer"
-    if($op -eq "a"){$place = "DC=magni,DC=local"
-    }elseif($op -eq "b"){$place = "CN=Computers,DC=magni,DC=local"
-    }elseif($op -eq "c"){$place = "OU=MAGNI Servers,DC=magni,DC=local"
-    }elseif($op -eq "d"){$place = "OU=MAGNI Computers,DC=magni,DC=local"
-    }elseif($op -eq "e"){$place = "OU=Ulster Folk and Transport Museum,OU=MAGNI Computers,DC=magni,DC=local"
-    }elseif($op -eq "f"){$place = "OU=Ulster Museum,OU=MAGNI Computers,DC=magni,DC=local"
-    }elseif($op -eq "g"){$place = "OU=Ulster American Folk Park,OU=MAGNI Computers,DC=magni,DC=local"
-    }else{Write-Host "Invalid option" 
-    exit}
-    Test-Workflow -user $user -place $place
-}
-
-
-
 
 Workflow Test-Workflow {
 [CmdletBinding()]
@@ -117,4 +84,34 @@ Workflow Test-Workflow {
             $sali
         }
     }
+}
+
+$user = read-host “What is the Username of the user?”
+$UserCheck = get-aduser $user
+if ($user -eq ""){
+	Write-Host "Username cannot be blank, please re-enter username!!!!!"
+} elseif ($UserCheck -eq $null){
+	Write-Host $user
+	Write-Host "Invalid username, please verify this is the logon id for the account"
+} else {
+    $op = Read-Host "Where do you want to search?
+    A) DC=magni,DC=local
+    B) CN=Computers,DC=magni,DC=local
+    C) OU=MAGNI Servers,DC=magni,DC=local
+    D) OU=MAGNI Computers,DC=magni,DC=local
+    E) OU=Ulster Folk and Transport Museum,OU=MAGNI Computers,DC=magni,DC=local
+    F) OU=Ulster Museum,OU=MAGNI Computers,DC=magni,DC=local
+    G) OU=Ulster American Folk Park,OU=MAGNI Computers,DC=magni,DC=local
+    
+    Answer"
+    if($op -eq "a"){$place = "DC=magni,DC=local"
+    }elseif($op -eq "b"){$place = "CN=Computers,DC=magni,DC=local"
+    }elseif($op -eq "c"){$place = "OU=MAGNI Servers,DC=magni,DC=local"
+    }elseif($op -eq "d"){$place = "OU=MAGNI Computers,DC=magni,DC=local"
+    }elseif($op -eq "e"){$place = "OU=Ulster Folk and Transport Museum,OU=MAGNI Computers,DC=magni,DC=local"
+    }elseif($op -eq "f"){$place = "OU=Ulster Museum,OU=MAGNI Computers,DC=magni,DC=local"
+    }elseif($op -eq "g"){$place = "OU=Ulster American Folk Park,OU=MAGNI Computers,DC=magni,DC=local"
+    }else{Write-Host "Invalid option" 
+    exit}
+    Test-Workflow -user $user -place $place
 }
