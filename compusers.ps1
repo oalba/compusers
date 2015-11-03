@@ -51,7 +51,7 @@ Workflow Test-Workflow {
 
 $user4 = read-host “What is the Username of the user?”
 $user2 = '*'+$user4+'*'
-$user3 = Get-ADUser -Filter {DisplayName -like $user2}| Select-Object samaccountname
+$user3 = Get-ADUser -Filter {samaccountname -like $user2}| Select-Object samaccountname
 $user = $user3.samaccountname
 if ($user -eq ""){
 	Write-Host "Username cannot be blank!!!!!"
@@ -79,4 +79,5 @@ if ($user -eq ""){
     }else{Write-Host "Invalid option" 
     exit}
     Test-Workflow -user $user -place $place
+    exit
 }
